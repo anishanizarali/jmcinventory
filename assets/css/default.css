@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : kartoone
 */
 
+//body {
+//    background-color: navy;
+//}
+
 a.delete:hover { 
     color:red;
     font-weight:bold
@@ -18,3 +22,4 @@ h3.message {
     background:#aaa;
     border:1px solid #000;
 }
+
