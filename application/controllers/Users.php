@@ -14,18 +14,19 @@ class Users extends CI_Controller {
     }
 
     public function dashboard() {
-        if(!logged_in()) redirect('auth/login');
+        if (!logged_in())
+            redirect('auth/login');
         $data['reservations'] = $this->users->getreservations(user('id'));
         echo "Welcome back " . user('id');
         echo "<br />Your role is " . user('role_id');
         exit;
     }
-    
+
     // user should already be logged in
     public function mobile_getreservations() {
         $reservations = $this->users->getreservations(user('id'));
         echo json_encode($reservations);
         exit;
     }
-    
+
 }
