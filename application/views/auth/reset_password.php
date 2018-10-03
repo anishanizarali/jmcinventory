@@ -1,12 +1,13 @@
 <html>
+    <body style="background-color:beige;"</body>
 <head>
-	<title>Reset Password</title>
+<h1 style="text-align:center; color:blue; "<title>Reset Password</title><h1>
 </head>
 <body>
 
 	<p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 
-	<?php 
+	<p style=" text-align:center; font-size:100%; color: crimson; "<?php 
 	if($success){
 		echo '<p>You have successfully reset your password.</p>';
 	} else {
@@ -20,7 +21,8 @@
 	    echo form_submit(array('type' => 'submit', 'value' => 'Save New Password'));
 	    echo form_close();
     }
-    ?>
+    ?></p>
 
 </body>
+<p style="border:2px solid dodgerblue; text-align:center;"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 </html>
