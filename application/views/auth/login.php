@@ -1,12 +1,12 @@
 <html>
-<head>
-	<title>Login</title>
+    <body style="background-color:beige;"</body>
+    <head>
+<h1 style="text-align:center; color:blue; "<title>Login</title></h1>
+      
 </head>
 <body>
     
-	<p><a href="<?php echo site_url('auth/signup'); ?>">Sign Up</a> | <a href="<?php echo site_url('auth/forgot'); ?>">Forgot Password?</a></p>
-
-	<?php 
+	<p style=" text-align:center; font-size:100%; color: crimson; "<?php 
     if($error) echo '<p class="error">'. $error .'</p>';
     echo form_open(); 
     echo form_label('Email Address', 'email') .'<br />';
@@ -17,7 +17,11 @@
     echo form_error('password');
     echo form_submit(array('type' => 'submit', 'value' => 'Login'));
     echo form_close();
-    ?>
-      
-</body>
+    ?></p>  
+    
+    <p style="border:2px solid dodgerblue; text-align:center;"><a href="<?php echo site_url('auth/signup'); ?>
+          ">Sign Up</a> | <a href="<?php echo site_url('auth/forgot'); ?>"
+               >Forgot Password?</a></p>
+               
+               </body>
 </html>
