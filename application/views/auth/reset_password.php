@@ -24,5 +24,6 @@
     ?></p>
 
 </body>
-<p style="border:2px solid dodgerblue; text-align:center;"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
+<p style="border:2px solid dodgerblue; text-align:center;">
+    <a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 </html>
