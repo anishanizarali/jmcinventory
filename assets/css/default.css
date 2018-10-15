@@ -8,9 +8,9 @@ and open the template in the editor.
     Author     : kartoone
 */
 
-//body {
-//    background-color: navy;
-//}
+/*body {
+    background-color: navy;
+}*/
 
 a.delete:hover { 
     color:red;
@@ -28,4 +28,6 @@ table td {
     border:1px solid #eee;
 }
 
-
+background dashboard{
+    Backgroung:##FFFF00;
+}
