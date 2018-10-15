@@ -1,11 +1,4 @@
-<html>
-    <body style="background-color:beige;"</body>
-    <head>
-    <h1 style="text-align:center; color:blue; "<title>Sign Up</title></h1>
-
-</head>
-<body>
-
+	<p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 
 
     <p style=" text-align:center; font-size:100%; color: crimson; "<?php
@@ -23,9 +16,4 @@
     echo form_error('password_conf');
     echo form_submit(array('type' => 'submit', 'value' => 'Sign Up'));
     echo form_close();
-    ?> </p>
-
-</body>
-<p style="border:2px solid dodgerblue; text-align:center;"</p>
-<a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
-</html>
+    ?>
