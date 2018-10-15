@@ -17,6 +17,7 @@ class Auth extends CI_Controller {
 
         $this->load->library('authit');
         $this->load->helper('authit');
+        $this->load->helper('html');
         $this->config->load('authit');
 
         $this->load->helper('url');
@@ -27,7 +28,7 @@ class Auth extends CI_Controller {
             redirect('auth/login');
 
         // Redirect to your logged in landing page here
-        redirect('auth/dash');
+        redirect('users/dashboard');
     }
 
     /**
@@ -35,7 +36,7 @@ class Auth extends CI_Controller {
      */
     public function login() {
         if (logged_in())
-            redirect('auth/dash');
+            redirect('users/dashboard');
 
         $this->load->library('form_validation');
         $this->load->helper('form');
@@ -52,7 +53,7 @@ class Auth extends CI_Controller {
                     exit;
                 }
 
-                redirect('users/dash');
+                redirect('users/dashboard');
             } else {
                 $data['error'] = 'Your email address and/or password is incorrect.';
                 if ($this->input->post("ismobile")) {
@@ -62,7 +63,9 @@ class Auth extends CI_Controller {
             }
         }
 
+        $this->load->view('templates/header',['title'=>'Login']);
         $this->load->view('auth/login', $data);
+        $this->load->view('templates/footer');
     }
 
     /**
@@ -71,7 +74,7 @@ class Auth extends CI_Controller {
     public function signup() {
         // Redirect to your logged in landing page here
         if (logged_in())
-            redirect('auth/dash');
+            redirect('users/dashboard');
 
         $this->load->library('form_validation');
         $this->load->helper('form');
@@ -100,7 +103,9 @@ class Auth extends CI_Controller {
             }
         }
 
+        $this->load->view('templates/header',['title'=>'Signup']);
         $this->load->view('auth/signup', $data);
+        $this->load->view('templates/footer');
     }
 
     /**
@@ -120,7 +125,7 @@ class Auth extends CI_Controller {
     public function forgot() {
         // Redirect to your logged in landing page here
         if (logged_in())
-            redirect('auth/dash');
+            redirect('users/dashboard');
 
         $test_emails = $this->config->item('authit_test_emails');
 
@@ -162,7 +167,9 @@ Note: This reset code will expire after ' . date('j M Y') . '.';
             $data['success'] = true;
         }
 
+        $this->load->view('templates/header',['title'=>'Forgot password']);
         $this->load->view('auth/forgot_password', $data);
+        $this->load->view('templates/footer');
     }
 
     public function savemails($origin, $protocol, $mailtype, $from, $email, $subject, $message) {
@@ -313,7 +320,7 @@ Note: This reset code will expire after ' . date('j M Y') . '.';
     public function reset() {
         // Redirect to your logged in landing page here
         if (logged_in())
-            redirect('auth/dash');
+            redirect('users/dashboard');
 
         $this->load->library('form_validation');
         $this->load->helper('form');
