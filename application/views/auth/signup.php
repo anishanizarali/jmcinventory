@@ -1,7 +1,7 @@
 	<p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 
 
-    <p style=" text-align:center; font-size:100%; color: crimson; "<?php
+    <p style=" text-align:center; font-size:100%; color: crimson; "><?php
     if ($error)
         echo '<p class="error">' . $error . '</p>';
     echo form_open();
