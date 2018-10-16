@@ -28,6 +28,14 @@ table td {
     border:1px solid #eee;
 }
 
-background dashboard{
-    Backgroung:##FFFF00;
+body {
+    background:#ffff00;
+}
+
+div#usermenu {
+    width:100%;
+    height:3em;
+    background: #00ff00;
+    padding:0;
+    
 }
