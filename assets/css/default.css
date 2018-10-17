@@ -8,9 +8,10 @@ and open the template in the editor.
     Author     : kartoone
 */
 
-/*body {
-    background-color: navy;
-}*/
+body {
+    background:#ffffff;
+}
+
 
 a.delete:hover { 
     color:red;
@@ -28,9 +29,7 @@ table td {
     border:1px solid #eee;
 }
 
-body {
-    background:#ffffff;
-}
+
 
 div#usermenu {
     width:100%;
