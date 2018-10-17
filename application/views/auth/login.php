@@ -1,6 +1,6 @@
 	<p><a href="<?php echo site_url('auth/signup'); ?>">Sign Up</a> | <a href="<?php echo site_url('auth/forgot'); ?>">Forgot Password?</a></p>
 
-	<?php 
+    <?php 
     if($error) echo '<p class="error">'. $error .'</p>';
     echo form_open(); 
     echo form_label('Email Address', 'email') .'<br />';
