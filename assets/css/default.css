@@ -49,3 +49,14 @@ div#adminmenu {
     background:#cee8dd;
     padding:0;
 }
+/* avoid putting a paragraph inside a form, let's reserve that for codeigniter error messages */
+form p {
+    color:red;
+    font-weight:bold;
+}
+form select, form input {
+    margin-bottom:6px;
+}
+form input[name="accessories[]"] {
+    margin-bottom:0;
+}
