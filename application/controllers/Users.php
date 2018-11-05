@@ -46,7 +46,7 @@ class Users extends CI_Controller {
                 $this->load->view("templates/footer");
                 break;
         }
-        
+
     }
 
     // user should already be logged in
@@ -54,6 +54,10 @@ class Users extends CI_Controller {
         $reservations = $this->users->getreservations(user('id'));
         echo json_encode($reservations);
         exit;
+    }
+
+    public function edit($user_id) {
+      echo "editing $user_id";
     }
 
 }
