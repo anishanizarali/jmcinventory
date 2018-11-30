@@ -1,3 +1,3 @@
 <div id="adminmenu">
-    <a href="/auth/logout">Log out</a>
+    <a href="<?php echo site_url('auth/logout'); ?>">Log out</a>
 </div>

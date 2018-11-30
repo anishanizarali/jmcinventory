@@ -32,3 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /jmcinventory2/nbproject/private/
 /ajaxdemo/nbproject/private/
 ._inventory-dbdesign.mwb
+application/config/config.php
