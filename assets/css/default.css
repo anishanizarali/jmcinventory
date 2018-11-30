@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : Sep 5, 2018, 8:27:43 AM
     Author     : kartoone
 */
@@ -13,7 +13,7 @@ body {
 }
 
 
-a.delete:hover { 
+a.delete:hover {
     color:red;
     font-weight:bold
 }
@@ -49,6 +49,38 @@ div#adminmenu {
     background:#cee8dd;
     padding:0;
 }
+
+h1 {
+  text-align: center;
+}
+
+h4#login{
+  text-align: center;
+  font-weight: normal;
+}
+
+p#login{
+  text-align: center;
+}
+
+h4#signup{
+  text-align: center;
+  font-weight: normal;
+}
+
+p#signup{
+  text-align: center;
+}
+
+h4#forgotpassword{
+  text-align: center;
+  font-weight: normal;
+}
+
+p#forgotpassword{
+  text-align: center;
+}
+
 /* avoid putting a paragraph inside a form, let's reserve that for codeigniter error messages */
 form p {
     color:red;

@@ -1,10 +1,10 @@
 	<p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 
-	<?php 
+	<?php
 	if($success){
 		echo '<p>You have successfully reset your password.</p>';
 	} else {
-	    echo form_open(); 
+	    echo form_open();
 	    echo form_label('Password', 'password') .'<br />';
 	    echo form_password(array('name' => 'password', 'value' => set_value('password'))) .'<br />';
 	    echo form_error('password');

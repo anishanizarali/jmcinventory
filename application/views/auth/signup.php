@@ -1,7 +1,6 @@
-	<p><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
 
-
-    <p style=" text-align:center; font-size:100%; color: crimson; "><?php
+		<h4 id = "signup">
+    <?php
     if ($error)
         echo '<p class="error">' . $error . '</p>';
     echo form_open();
@@ -17,3 +16,6 @@
     echo form_submit(array('type' => 'submit', 'value' => 'Sign Up'));
     echo form_close();
     ?>
+	</h4>
+
+<p id="signup"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
