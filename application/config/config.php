@@ -23,11 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-<<<<<<< HEAD
-$config['base_url'] = 'http://localhost/jmcinventory';
-=======
+
 $config['base_url'] = 'http://localhost:8080/jmcinventory/';
->>>>>>> dd1077875f9aaab9626f7bc52c4f4adcf53887f0
 
 /*
 |--------------------------------------------------------------------------
@@ -118,7 +115,7 @@ $config['enable_hooks'] = FALSE;
 | https://codeigniter.com/user_guide/general/creating_libraries.html
 |
 */
-$config['subclass_prefix'] = 'MY_';
+$config['subclass_prefix'] = 'JMC_';
 
 /*
 |--------------------------------------------------------------------------
@@ -527,7 +524,3 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 include "util.php";
-<<<<<<< HEAD
---Anisha--
-=======
->>>>>>> dd1077875f9aaab9626f7bc52c4f4adcf53887f0
