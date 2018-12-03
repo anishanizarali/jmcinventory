@@ -46,7 +46,7 @@ endforeach;
 </table>
 
 <h2>Users</h2>
-<a href="users/adminadd">Add user</a>
+<a href="adminadd">Add user</a>
 <table>
 <?php
 foreach ($users as $user):
