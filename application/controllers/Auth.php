@@ -14,12 +14,10 @@ class Auth extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-
         $this->load->library('authit');
         $this->load->helper('authit');
         $this->load->helper('html');
         $this->config->load('authit');
-
         $this->load->helper('url');
     }
 
@@ -40,7 +38,9 @@ class Auth extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->load->helper('form');
+        $data['title'] = 'JMC Inventory Login';
         $data['error'] = false;
+        $data['nologout'] = true; // don't display a log out link on the login page
 
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -63,9 +63,25 @@ class Auth extends CI_Controller {
             }
         }
 
-        $this->load->view('templates/header',['title'=>'Login']);
+        $this->load->view('templates/header',$data);
         $this->load->view('auth/login', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function mobile_login() {
+        header('Content-Type: application/json');
+        $this->authit->login($this->input->post('email'), $this->input->post('password'));
+        echo json_encode(array('id'=>user('id')));
+    }
+
+    public function is_samford($email) {
+        if (strstr($email,"@samford.edu"))
+            $response = true;
+        else {
+            $this->form_validation->set_message('is_samford', 'Email must be a samford email address.');
+            $response = false;
+        }
+        return $response;
     }
 
     /**
@@ -78,9 +94,11 @@ class Auth extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->load->helper('form');
-        $data['error'] = '';
+        $data['error'] = false;
+        $data['title'] = 'JMC Inventory Signup';
+        $data['nologout'] = true; // don't display a log out link on the login page
 
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[' . $this->config->item('authit_users_table') . '.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|callback_is_samford|valid_email|is_unique[' . $this->config->item('authit_users_table') . '.email]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('authit_password_min_length') . ']');
         $this->form_validation->set_rules('password_conf', 'Confirm Password', 'required|matches[password]');
 
@@ -103,7 +121,7 @@ class Auth extends CI_Controller {
             }
         }
 
-        $this->load->view('templates/header',['title'=>'Signup']);
+        $this->load->view('templates/header', $data);
         $this->load->view('auth/signup', $data);
         $this->load->view('templates/footer');
     }
@@ -146,7 +164,7 @@ class Auth extends CI_Controller {
             $from = "'noreply@example.com', 'Example App'"; // Change these details
             $subject = 'Reset your Password';
             $message = 'To reset your password please click the link below and follow the instructions:
-      
+
 ' . site_url('auth/reset/' . $user->id . '/' . $slug) . '
 
 If you did not request to reset your password then please just ignore this email and no changes will occur.

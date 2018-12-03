@@ -1,5 +1,5 @@
 .DS_Store
-
+application/config/config.php
 application/cache/*
 !application/cache/index.html
 
@@ -31,5 +31,3 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 /jmcinventory2/nbproject/private/
 /ajaxdemo/nbproject/private/
-._inventory-dbdesign.mwb
-application/config/config.php
