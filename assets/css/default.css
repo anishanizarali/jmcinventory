@@ -39,14 +39,14 @@ div#usermenu {
 div#workermenu {
     width:100%;
     height:3em;
-    background:#cee8dd;
+    background:#ffffff;
     padding:0;
 }
 
 div#adminmenu {
     width:100%;
     height:3em;
-    background:#cee8dd;
+    background:#ffffff;
     padding:0;
 }
 
@@ -79,6 +79,15 @@ h4#forgotpassword{
 
 p#forgotpassword{
   text-align: center;
+}
+
+h4#adminadd{
+  text-align: center;
+  font-weight: normal;
+}
+
+p#logoutam{
+  text-align: left;
 }
 
 /* avoid putting a paragraph inside a form, let's reserve that for codeigniter error messages */
