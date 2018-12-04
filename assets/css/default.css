@@ -29,25 +29,28 @@ table td {
     border:1px solid #eee;
 }
 
-div#usermenu {
+div.menu {
     width:100%;
-    height:3em;
     background:#cee8dd;
     padding:0;
+    text-align:center;
 }
 
-div#workermenu {
-    width:100%;
-    height:3em;
-    background:#ffffff;
-    padding:0;
+div.workermenu {
+    background:#cccc77;
 }
 
-div#adminmenu {
-    width:100%;
-    height:3em;
-    background:#ffffff;
+div.adminmenu {
+    background:#cc7777;
     padding:0;
+    text-align:center;
+}
+
+div#containerdiv {
+    width:800px;
+    float:center;
+    margin:0 auto;
+    text-align:center;
 }
 
 h1 {

@@ -22,6 +22,7 @@ class Authit
         $this->CI->load->database();
         $this->CI->load->library('session');
         $this->CI->load->model('authit_model');
+        $this->CI->load->model('users_model');
         $this->CI->config->load('authit');
     }
 
@@ -57,7 +58,7 @@ class Authit
         }
     }
 
-    public function signup($email, $password, $role_id=null)
+    public function signup($email, $password,$role_id=Users_model::DEFAULT_USER)
     {
         $user = $this->CI->authit_model->get_user_by_email($email);
         if ($user) {

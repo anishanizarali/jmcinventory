@@ -1,3 +1,4 @@
+<div style="text-align:left">
 <?php
     if($error) echo '<p class="error">'. $error .'</p>';
     echo form_open('inventory/checkout/'.$item->id);
@@ -22,3 +23,5 @@
     // start here - checkboxes for student worker ... PLUS ITEM NOTES!!!
     echo form_submit(array('type' => 'submit', 'value' => 'Next'));
     echo form_close();
+?>
+</div>
