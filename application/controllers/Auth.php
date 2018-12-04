@@ -47,19 +47,9 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run()) {
             if ($this->authit->login(set_value('email'), set_value('password'))) {
-                // Redirect to your logged in landing page here
-                if ($this->input->post("ismobile")) {
-                    echo json_encode(array('id'=>user('id')));
-                    exit;
-                }
-
                 redirect('users/dashboard');
             } else {
                 $data['error'] = 'Your email address and/or password is incorrect.';
-                if ($this->input->post("ismobile")) {
-                    echo "error";
-                    exit;
-                }
             }
         }
 
