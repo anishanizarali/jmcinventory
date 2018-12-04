@@ -1,6 +1,5 @@
 
 <h4 id="forgotpassword">
-	<a
 	<?php
 	if($success){
 		echo '<p>Thank you. We have sent you an email with further instructions on how to reset your password.</p>';
@@ -14,6 +13,5 @@
 	    echo form_close();
     }
     ?>
-	</a>
 	</h4>
 <p id="forgotpassword"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
