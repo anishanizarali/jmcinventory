@@ -60,7 +60,7 @@ h1 {
 h4#login{
   text-align: center;
   font-weight: bold;
-  color: white;
+  color: #3135D6;
   font-size: 18px;
   line-height: 1.3;
 }
@@ -90,7 +90,7 @@ p#login a:hover {
 h4#signup{
   text-align: center;
   font-weight: bold;
-  color: white;
+  color: #3135D6;
   font-size: 18px;
   line-height: 1.3;
 }
@@ -120,7 +120,7 @@ p#signup a:hover {
 h4#forgotpassword {
   text-align: center;
   font-weight: bold;
-  color: white;
+  color: #3135D6;
   font-size: 18px;
   line-height: 1.3;
 }
