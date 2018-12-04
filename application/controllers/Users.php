@@ -16,16 +16,20 @@ class Users extends JMC_Controller
             case Users_model::DEFAULT_USER:
                 $data['reservations'] = $this->users_model->getreservations(user('id'));
                 $data['title'] = "User dashboard";
-                $this->load->view("templates/header", $data);
-                $this->load->view("users/userdashboard", $data);
+
+                $data['menu'] = $this->load->view("users/usermenu",$data,true);
+                $this->load->view("templates/header",$data);
+                $this->load->view("users/userdashboard",$data);
                 $this->load->view("templates/footer");
                 break;
             case Users_model::WORKER_USER:
                 $data['reservations'] = $this->users_model->getallreservations();
                 $data['items'] = $this->inventory_model->getallitems();
                 $data['title'] = "Worker dashboard";
-                $this->load->view("templates/header", $data);
-                $this->load->view("users/workerdashboard", $data);
+
+                $data['menu'] = $this->load->view("users/workermenu",$data,true);
+                $this->load->view("templates/header",$data);
+                $this->load->view("users/workerdashboard",$data);
                 $this->load->view("templates/footer");
                 break;
             case Users_model::ADMIN_USER:
@@ -33,6 +37,7 @@ class Users extends JMC_Controller
                 $data['items'] = $this->inventory_model->getallitems();
                 $data['users'] = $this->users_model->getallusers();
                 $data['title'] = "Admin dashboard";
+                $data['menu'] = $this->load->view("users/adminmenu",$data,true);
                 $this->load->view("templates/header", $data);
                 $this->load->view("users/admindashboard", $data);
                 $this->load->view("templates/footer");
