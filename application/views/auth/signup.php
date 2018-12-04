@@ -1,5 +1,6 @@
 
 		<h4 id = "signup">
+		<a
     <?php
     if ($error)
         echo '<p class="error">' . $error . '</p>';
@@ -13,9 +14,11 @@
     echo form_label('Confirm Password', 'password_conf') . '<br />';
     echo form_password(array('name' => 'password_conf', 'value' => set_value('password_conf'))) . '<br />';
     echo form_error('password_conf');
+		echo '<br />';
     echo form_submit(array('type' => 'submit', 'value' => 'Sign Up'));
     echo form_close();
     ?>
+	</a>
 	</h4>
 
 <p id="signup"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
