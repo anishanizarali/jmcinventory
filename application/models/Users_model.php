@@ -21,15 +21,15 @@ class Users_model extends CI_Model
         $query = $this->db->get();
         $results = $query->result();
         if ($results) {
-          return $results[0];
+            return $results[0];
         } else {
-          return false;
+            return false;
         }
     }
 
     public function getallusers()
     {
-        $this->db->select("users.*");
+        $this->db->select("users.*,roles.title as role");
         $this->db->from('users');
         $this->db->join('roles', 'users.role_id=roles.id');
         $this->db->order_by('email');
@@ -67,29 +67,5 @@ class Users_model extends CI_Model
         $this->db->from('roles');
         $query = $this->db->get();
         return $query->result();
-    }
-
-    // old examples from news tutorial
-    public function set_news()
-    {
-        $this->load->helper('url');
-
-        $slug = url_title($this->input->post('title'), 'dash', true);
-
-        $data = array(
-            'title' => $this->input->post('title'),
-            'slug' => $slug,
-            'text' => $this->input->post('text')
-        );
-
-        return $this->db->insert('news', $data);
-    }
-
-    public function delete_news($slug)
-    {
-        if (!$slug) {
-            return false;
-        }
-        return $this->db->delete('news', array('slug' => $slug));
     }
 }
