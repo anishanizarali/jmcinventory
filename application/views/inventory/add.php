@@ -1,6 +1,6 @@
-<?php 
+<?php
     if($error) echo '<p class="error">'. $error .'</p>';
-    echo form_open(isset($item)?'inventory/edit/'.$item->id:'inventory/add'); 
+    echo form_open(isset($item)?'inventory/edit/'.$item->id:'inventory/add');
     echo form_input(array('type'=>'hidden','name' => 'item_id', 'value' => isset($item)?$item->id:set_value('item_id')));
     echo form_label('Category', 'category_id') .'<br />';
     echo form_dropdown(array('name' => 'category_id', 'options' => $categories, 'selected'=>isset($item)?$item->category_id:set_value('category_id'))) .'<br />';
@@ -14,4 +14,6 @@
         echo form_input(array('name' => 'accessories[]','value'=>(isset($item) && $i<count($item->accessories))?$item->accessories[$i]:"")) .'<br />';
     }
     echo form_submit(array('type' => 'submit', 'value' => isset($item)?'Save':'Add'));
+    echo '<br /><br />';
+    echo form_submit(array('type' => 'button', 'value' => 'Back to Dashboard', 'onClick' => "window.location.href='http://localhost:8080/jmcinventory/users/dashboard'"));
     echo form_close();
