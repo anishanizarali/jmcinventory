@@ -1,6 +1,5 @@
 
 		<h4 id = "signup">
-		<a
     <?php
     if ($error)
         echo '<p class="error">' . $error . '</p>';
@@ -18,7 +17,6 @@
     echo form_submit(array('type' => 'submit', 'value' => 'Sign Up'));
     echo form_close();
     ?>
-	</a>
 	</h4>
 
 <p id="signup"><a href="<?php echo site_url('auth/login'); ?>">Login</a></p>
