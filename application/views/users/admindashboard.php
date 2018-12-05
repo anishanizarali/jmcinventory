@@ -50,7 +50,7 @@ endforeach;
 <table>
 <?php
 foreach ($users as $user):
-    echo "<tr><td>{$user->email}</td><td>{$user->role}</td><td>{$user->created}</td></tr>";
+    echo "<tr><td>{$user->email}</td><td>{$user->role_id}</td><td>{$user->created}</td></tr>";
 endforeach;
 ?>
 </table>
