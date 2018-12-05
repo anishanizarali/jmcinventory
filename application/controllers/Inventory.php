@@ -17,7 +17,8 @@ class Inventory extends JMC_Controller
         $this->load->helper('form');
         $data['title'] = 'Add inventory item manually';
         $data['error'] = false;
-        $this->form_validation->set_rules('serial', 'Serial', 'required|is_unique[items.serial]');
+        $this->form_validation->set_rules('serial', 'Serial', 'callback_check_serial[items.serial]');
+        $this->form_validation->set_rules('category_id', 'Category', 'required');
         if ($this->form_validation->run()) {
             if ($this->inventory_model->add()) {
                 $data['msg'] = "The item was added successfully.";
@@ -70,7 +71,7 @@ class Inventory extends JMC_Controller
         $data['error'] = false;
         $this->load->library('form_validation');
         $this->load->helper('form');
-        $this->form_validation->set_rules('serial', 'Serial', 'required|callback_check_serial[items.serial]');
+        $this->form_validation->set_rules('serial', 'Serial', 'callback_check_serial[items.serial]');
         if ($this->form_validation->run()) {
             $success = $this->inventory_model->edit();
             $data['item'] = $this->inventory_model->getitem($item_id);
@@ -90,6 +91,9 @@ class Inventory extends JMC_Controller
 
     public function check_serial($serial)
     {
+        if (!$serial) {
+            return true; // allow null serial numbers
+        }
         if ($this->input->post('item_id')) {
             $id = $this->input->post('item_id');
         } else {
@@ -118,28 +122,30 @@ class Inventory extends JMC_Controller
         }
     }
 
-    public function valid_date($datedue) {
-      if (!$datedue) {
-        $this->form_validation->set_message('valid_date', 'The Date due field is required.');
-        return false;
-      }
-      if (!(bool)strtotime($datedue)) {
-        $this->form_validation->set_message('valid_date', 'The Date due field is not formatted correctly.');
-        return false;
-      }
-      return true;
+    public function valid_date($datedue)
+    {
+        if (!$datedue) {
+            $this->form_validation->set_message('valid_date', 'The Date due field is required.');
+            return false;
+        }
+        if (!(bool)strtotime($datedue)) {
+            $this->form_validation->set_message('valid_date', 'The Date due field is not formatted correctly.');
+            return false;
+        }
+        return true;
     }
 
-    public function valid_student($user_id) {
-      if (!$user_id) {
-        $this->form_validation->set_message('valid_student', 'Please select a student from the list.');
-        return false;
-      }
-      if (!$this->users_model->getuser($user_id)) {
-        $this->form_validation->set_message('valid_student', 'The student entered does not exist in the system. Please have the student create an account first.');
-        return false;
-      }
-      return true;
+    public function valid_student($user_id)
+    {
+        if (!$user_id) {
+            $this->form_validation->set_message('valid_student', 'Please select a student from the list.');
+            return false;
+        }
+        if (!$this->users_model->getuser($user_id)) {
+            $this->form_validation->set_message('valid_student', 'The student entered does not exist in the system. Please have the student create an account first.');
+            return false;
+        }
+        return true;
     }
 
     protected function _prepareUsers()
@@ -156,49 +162,48 @@ class Inventory extends JMC_Controller
     // handle checkins and checkouts
     public function checkout($item_id)
     {
-      // second step is getting signature - https://github.com/williammalone/Simple-HTML5-Drawing-App
-      if (!$this->_isAuthorized()) {
-          redirect('auth/login');
-      }
-      $data['item'] = $this->inventory_model->getitem($item_id);
-      $data['users'] = $this->_prepareUsers();
-      $data['title'] = 'Item checkout STEP 1';
-      $data['error'] = false;
-      $this->load->library('form_validation');
-      $this->load->helper('form');
-      $this->form_validation->set_rules('datedue', 'Date due', 'callback_valid_date');
-      $this->form_validation->set_rules('user_id', 'Student email', 'callback_valid_student');
-      if ($data['item']->accessories) {
-        $i=0;
-        foreach ($data['item']->accessories as $acc) {
-          $this->form_validation->set_rules('accessories'.$i++, 'Accessories', 'required');
+        // second step is getting signature - https://github.com/williammalone/Simple-HTML5-Drawing-App
+        if (!$this->_isAuthorized()) {
+            redirect('auth/login');
         }
-      }
-      if ($this->form_validation->run()) {
-          //$success = $this->inventory_model->checkout();
-          $success = true;
-          if ($success) {
-              $data['msg'] = "The item has been checked out. Please enter signature now.";
-          } else {
-              $data['msg'] = "An unexpected error occurred.";
-          }
-      } else {
-          $data['item'] = $this->inventory_model->getitem($item_id);
-      }
-      $data['categories'] = $this->_prepareCategories();
-      $this->load->view('templates/header', $data);
-      $this->load->view('inventory/checkout', $data);
-      $this->load->view('templates/footer');
+        $data['item'] = $this->inventory_model->getitem($item_id);
+        $data['users'] = $this->_prepareUsers();
+        $data['title'] = 'Item checkout STEP 1';
+        $data['error'] = false;
+        $this->load->library('form_validation');
+        $this->load->helper('form');
+        $this->form_validation->set_rules('datedue', 'Date due', 'callback_valid_date');
+        $this->form_validation->set_rules('user_id', 'Student email', 'callback_valid_student');
+        if ($data['item']->accessories) {
+            $i=0;
+            foreach ($data['item']->accessories as $acc) {
+                $this->form_validation->set_rules('accessories'.$i++, 'Accessories', 'required');
+            }
+        }
+        if ($this->form_validation->run()) {
+            //$success = $this->inventory_model->checkout();
+            $success = true;
+            if ($success) {
+                $data['msg'] = "The item has been checked out. Please enter signature now.";
+            } else {
+                $data['msg'] = "An unexpected error occurred.";
+            }
+        } else {
+            $data['item'] = $this->inventory_model->getitem($item_id);
+        }
+        $data['categories'] = $this->_prepareCategories();
+        $this->load->view('templates/header', $data);
+        $this->load->view('inventory/checkout', $data);
+        $this->load->view('templates/footer');
     }
 
     public function qrcode($item_id, $qraction)
     {
         $this->load->library('QRcode');
         switch ($qraction):
-           case 1: $url = "inventory/checkin/$item_id";
+           case 1: $url = "inventory/checkout/$item_id";
         endswitch;
         $data['qrdata'] = $url;
         $this->load->view('/inventory/qrcode', $data);
     }
-
 }

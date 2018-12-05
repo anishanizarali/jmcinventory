@@ -32,3 +32,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 /jmcinventory2/nbproject/private/
 /ajaxdemo/nbproject/private/
+
+## mac files
+*._*
